@@ -1,12 +1,12 @@
 import { useMemo } from 'react';
 import { decode } from 'blurhash';
 
-function blurhashToDataURL(
+export function blurhashToDataURL(
   blurhash: string,
   width: number = 160,
   height: number = 120,
   punch?: number
-) {
+): string {
   const w = Math.round(width || 100);
   const h = Math.round(height || 100);
 
@@ -41,11 +41,11 @@ export default function useBlurData(
   width: number = 160,
   height: number = 120,
   punch?: number
-) {
+): [string | undefined] {
   return useMemo(() => {
     if (typeof window === 'undefined') {
       return [undefined];
     }
-    return blurhashToDataURL(blurhash, width, height, punch);
+    return [blurhashToDataURL(blurhash, width, height, punch)];
   }, []);
 }
