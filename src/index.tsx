@@ -44,7 +44,7 @@ export default function useBlurData(
 ) {
   return useMemo(() => {
     if (typeof window === 'undefined') {
-      return undefined;
+      return [undefined];
     }
     return blurhashToDataURL(blurhash, width, height, punch);
   }, []);
